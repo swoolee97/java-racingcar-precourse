@@ -1,9 +1,6 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import model.Car;
@@ -16,11 +13,28 @@ import view.OutputView;
 public class RacingGame {
 	private List<Car> carList;
 	private int tryNumber;
+	
 	public RacingGame() {
 		tryNumber = 0;
+		carList = new ArrayList<>();
 	}
 
 	public void play() {
+		initializeCarList();
+		initializeTryNumber();
+		for(int i=0; i<tryNumber; i++) {
+			for(Car car : carList) {
+				car.decideMove();
+			}
+			OutputView.printRoundResult(carList);
+		}
+		CarComparator.sortBydesc(carList);
+		Referee referee = new Referee(carList);
+		List<Car> winners = referee.judgeWinners();
+		OutputView.printWinners(winners);
+	}
+	
+	private void initializeCarList() {
 		while(true) {
 			carList = new ArrayList<>();
 			String[] carNames = InputView.readCarNames().split(",");
@@ -35,7 +49,9 @@ public class RacingGame {
 			}
 			break;
 		}
-		
+	}
+	
+	private void initializeTryNumber() {
 		while(true) {
 			try {
 				tryNumber = InputView.readTryNumber();
@@ -45,16 +61,5 @@ public class RacingGame {
 				continue;
 			}
 		}
-		for(int i=0; i<tryNumber; i++) {
-			for(Car car : carList) {
-				car.decideMove();
-			}
-			OutputView.printRoundResult(carList);
-		}
-		CarComparator.sortBydesc(carList);
-		Referee referee = new Referee(carList);
-		List<Car> winners = referee.judgeWinners();
-		OutputView.printWinners(winners);
-		
 	}
 }
