@@ -9,6 +9,7 @@ import java.util.List;
 import model.Car;
 import model.Referee;
 import util.CarComparator;
+import util.Validator;
 import view.InputView;
 import view.OutputView;
 
@@ -16,15 +17,25 @@ public class RacingGame {
 	private List<Car> carList;
 	private int tryNumber;
 	public RacingGame() {
-		carList = new ArrayList<>();
 		tryNumber = 0;
 	}
 
 	public void play() {
-		String[] carNames = InputView.readCarNames().split(",");
-		for(String carName : carNames) {
-			carList.add(Car.createCar(carName));
+		while(true) {
+			carList = new ArrayList<>();
+			String[] carNames = InputView.readCarNames().split(",");
+			try {
+				Validator.validateName(carNames);
+			}catch(IllegalArgumentException e) {
+				System.out.println(e.toString());
+				continue;
+			}
+			for(String carName : carNames) {
+				carList.add(Car.createCar(carName));
+			}
+			break;
 		}
+		
 		while(true) {
 			try {
 				tryNumber = InputView.readTryNumber();
