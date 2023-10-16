@@ -2,7 +2,7 @@ package model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-public class Car {
+public class Car implements Comparable<Car>{
     private final String name;
     private int position = 0;
     private StringBuilder status;
@@ -12,6 +12,11 @@ public class Car {
         status = new StringBuilder();
     }
 
+    @Override
+    public int compareTo(Car c) {
+    	return this.position - c.position;
+    }
+    
     public static Car createCar(String name) {
     	return new Car(name);
     }

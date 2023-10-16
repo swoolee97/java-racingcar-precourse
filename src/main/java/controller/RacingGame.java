@@ -1,9 +1,14 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import model.Car;
+import model.Referee;
+import util.CarComparator;
 import view.InputView;
 import view.OutputView;
 
@@ -35,5 +40,10 @@ public class RacingGame {
 			}
 			OutputView.printRoundResult(carList);
 		}
+		CarComparator.sortBydesc(carList);
+		Referee referee = new Referee(carList);
+		List<Car> winners = referee.judgeWinners();
+		
+		
 	}
 }
