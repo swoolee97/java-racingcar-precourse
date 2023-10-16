@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.Car;
 import view.InputView;
+import view.OutputView;
 
 public class RacingGame {
 	private List<Car> carList;
@@ -32,6 +33,7 @@ public class RacingGame {
 			for(Car car : carList) {
 				car.decideMove();
 			}
+			OutputView.printRoundResult(carList);
 		}
 	}
 }
