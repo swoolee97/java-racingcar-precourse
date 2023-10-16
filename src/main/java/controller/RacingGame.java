@@ -28,5 +28,10 @@ public class RacingGame {
 				continue;
 			}
 		}
+		for(int i=0; i<tryNumber; i++) {
+			for(Car car : carList) {
+				car.decideMove();
+			}
+		}
 	}
 }
