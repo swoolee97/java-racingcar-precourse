@@ -43,7 +43,7 @@ public class RacingGame {
 		CarComparator.sortBydesc(carList);
 		Referee referee = new Referee(carList);
 		List<Car> winners = referee.judgeWinners();
-		
+		OutputView.printWinners(winners);
 		
 	}
 }
