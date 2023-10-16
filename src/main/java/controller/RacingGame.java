@@ -41,7 +41,7 @@ public class RacingGame {
 			try {
 				Validator.validateName(carNames);
 			}catch(IllegalArgumentException e) {
-				System.out.println(e.toString());
+				OutputView.printErrorMessaage(e.toString());
 				continue;
 			}
 			for(String carName : carNames) {
@@ -57,7 +57,7 @@ public class RacingGame {
 				tryNumber = InputView.readTryNumber();
 				break;
 			}catch(IllegalArgumentException e) {
-				System.out.println("[ERROR]: 시도 횟수는 숫자여야 한다.");
+				OutputView.printErrorMessaage(e.toString());
 				continue;
 			}
 		}

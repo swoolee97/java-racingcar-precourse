@@ -16,4 +16,9 @@ public class OutputView {
 	public static void printWinners(List<Car> winners) {
 		System.out.printf("최종 우승자 : %s", Util.winnerListToString(winners));
 	}
+	
+	public static void printErrorMessaage(String message) {
+		System.out.println("[ERROR]: "+ message);
+	}
+	
 }

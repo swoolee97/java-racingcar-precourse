@@ -10,7 +10,10 @@ public class InputView {
 	
 	public static int readTryNumber() {
 		System.out.println("시도할 회수는 몇회인가요?");
-		return Integer.parseInt(Console.readLine());
+		try {
+			return Integer.parseInt(Console.readLine());
+		}catch(IllegalArgumentException e) {
+			throw new IllegalArgumentException("횟수는 숫자여야 합니다.");
+		}
 	}
-	
 }
